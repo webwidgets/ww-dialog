@@ -1,0 +1,117 @@
+<--
+    @license
+    Copyright (C) 2016 - Donato Pirozzi (donatopirozzi[at]gmail[dot]com)
+    This file is part of WEBWIDGET framework.
+    WEBWIDGET is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Lesser General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+    WEBWIDGET is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Lesser General Public License for more details.
+    Distributed under the GNU LGPL v3. For full terms see the file LICENSE.
+    License: http://www.gnu.org/licenses/lgpl.html LGPL version 3 or higher
+    Contributors:
+        - Donato Pirozzi (donatopirozzi[at]gmail[dot]com)
+-->
+
+<dom-module id="ww-dialog">
+    <template>
+
+        <!-- The Modal -->
+        <div id="myModal" class="modal">
+
+            <!-- Modal content -->
+            <div class="modal-content">
+                <span id="modalTitle">ciaoooo titolo</span>
+                <span id="modalCloseIcon" class="close">&times;</span>
+                <p>Some text in the Modal..</p>
+            </div>
+
+        </div>
+
+        <style>
+            .modal {
+                display: none; /* Hidden by default */
+                position: fixed; /* Stay in place */
+                z-index: 1; /* Sit on top */
+                padding-top: 100px; /* Location of the box */
+                left: 0;
+                top: 0;
+                width: 100%; /* Full width */
+                height: 100%; /* Full height */
+                overflow: auto; /* Enable scroll if needed */
+                background-color: rgb(0,0,0); /* Fallback color */
+                background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+            }
+
+            /* Modal Content */
+            .modal-content {
+                background-color: #fefefe;
+                margin: auto;
+                padding: 20px;
+                border: 1px solid #888;
+                width: 80%;
+            }
+
+            /* The Close Button */
+            .close {
+                color: #aaaaaa;
+                float: right;
+                font-size: 28px;
+                font-weight: bold;
+            }
+
+            .close:hover,
+            .close:focus {
+                color: #000;
+                text-decoration: none;
+                cursor: pointer;
+            }
+
+        </style>
+    </template>
+    <script type="text/javascript" src="../ww-core/webwidgets.js"></script>
+    <script>
+        class WWDialog extends HTMLElement {
+
+            constructor() {
+                super();
+            }
+
+            connectedCallback(evt) {
+                const span = this.shadowRoot.getElementById("modalCloseIcon");
+                span.onclick = () => this.close();
+            }
+
+            static get is() { return 'ww-dialog'; }
+
+            static get observedAttributes() { return ['title']; }
+
+            // Respond to attribute changes.
+            attributeChangedCallback(attr, oldValue, newValue) {
+                if (attr == 'title') {
+                    this.shadowRoot.getElementById('modalTitle').innerText = newValue;
+                }
+            }
+
+            ///////////////////////////////////////////////////////
+            // PUBLIC FUNCTION FOR THE WEB WIDGET.
+            ///////////////////////////////////////////////////////
+
+            open() {
+                this.shadowRoot.getElementById('myModal').style.display = "block";
+            }
+
+            close() {
+                console.log("closing");
+                this.shadowRoot.getElementById('myModal').style.display = "none";
+            }
+
+        }//EndClass.
+
+        WebWidgets.define(WWDialog);
+    </script>
+
+</dom-module>

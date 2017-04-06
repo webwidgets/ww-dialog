@@ -1,0 +1,27 @@
+<!doctype html>
+
+<html>
+<head>
+    <link rel="import" href="../ww-dialog.html">
+</head>
+<body>
+
+    <h2>Modal Example</h2>
+
+    <!-- Trigger/Open The Modal -->
+    <button id="myBtn">Open Modal</button>
+
+    <ww-dialog id="dlgTest" title="cc"></ww-dialog>
+
+    <script>
+        var modal = document.getElementById('dlgTest');
+        var btn = document.getElementById("myBtn");
+
+        // When the user clicks the button, open the modal
+        btn.onclick = function() {
+            modal.open();
+        }
+
+    </script>
+</body>
+</html>
