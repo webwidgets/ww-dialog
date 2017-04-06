@@ -9,18 +9,23 @@
     <h2>Modal Example</h2>
 
     <!-- Trigger/Open The Modal -->
-    <button id="myBtn">Open Modal</button>
+    <button id="myBtn1">Open Modal Dialog 1</button>
+    <button id="myBtn2">Open Modal Dialog 2</button>
 
-    <ww-dialog id="dlgTest" title="cc"></ww-dialog>
+    <ww-dialog id="dlgTest1" title="The dialog title">
+        <span slot="www-dialog-body">The dialog content</span>
+    </ww-dialog>
+
+    <ww-dialog id="dlgTest2" title="My second dialog">
+        <span slot="www-dialog-body">The content of second dialog.</span>
+    </ww-dialog>
 
     <script>
-        var modal = document.getElementById('dlgTest');
-        var btn = document.getElementById("myBtn");
+        var dlgTest1 = document.getElementById('dlgTest1');
+        document.getElementById("myBtn1").onclick = () => dlgTest1.open();
 
-        // When the user clicks the button, open the modal
-        btn.onclick = function() {
-            modal.open();
-        }
+        var dlgTest2 = document.getElementById('dlgTest2');
+        document.getElementById("myBtn2").onclick = () => dlgTest2.open();
 
     </script>
 </body>

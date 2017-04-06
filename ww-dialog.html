@@ -26,7 +26,9 @@
             <div class="modal-content">
                 <span id="modalTitle">ciaoooo titolo</span>
                 <span id="modalCloseIcon" class="close">&times;</span>
-                <p>Some text in the Modal..</p>
+                <div>
+                    <slot name="www-dialog-body"></slot>
+                </div>
             </div>
 
         </div>
@@ -101,7 +103,13 @@
             ///////////////////////////////////////////////////////
 
             open() {
-                this.shadowRoot.getElementById('myModal').style.display = "block";
+                let myModal = this.shadowRoot.getElementById('myModal');
+                myModal.style.display = "block";
+                window.onclick = (event) => {
+                    if (event.target == myModal)
+                        myModal.style.display = "none";
+
+                };
             }
 
             close() {
